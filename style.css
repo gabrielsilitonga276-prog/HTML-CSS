@@ -1,7 +1,10 @@
-/* --- KODE ASLI MILIKMU --- */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
 body{
     background: linear-gradient(135deg, blue, grey, aqua);
-    /* Flexbox untuk merapikan seluruh isi halaman secara vertikal */
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -10,6 +13,8 @@ body{
 h1{
     color: aqua;
     font-size: 50px;
+    transition: color 0.4s ease, transform 0.4s ease;
+    text-shadow: 2px 2px 8px gold;
 }
 .ke-1{
     color: green;
@@ -39,7 +44,7 @@ h1{
     font-size: 25px;
 }
 .ke-5{
-    color: darkblue;
+    color: aquamarine;
     font-size: 20px;
 }
 .p2{
@@ -62,22 +67,27 @@ h1{
 .t1{
     background-color: rgba(0, 0, 0, 0.3);
     color: white;
+    transition: background-color 0.3s ease, transform 0.3s ease;
 }
 .t2{
     background-color: rgba(0, 0, 0, 0.3);
     color: white;
+    transition: background-color 0.3s ease, transform 0.3s ease;
 }
 .t3{
     background-color: rgba(0, 0, 0, 0.3);
     color: white;
+    transition: background-color 0.3s ease, transform 0.3s ease;
 }
 .t4{
     background-color: rgba(0, 0, 0, 0.3);
     color: white;
+    transition: background-color 0.3s ease, transform 0.3s ease;
 }
 .t5{
     background-color: rgba(0, 0, 0, 0.3);
     color: white;
+    transition: background-color 0.3s ease, transform 0.3s ease;
 }
 
 
@@ -85,9 +95,10 @@ h1{
 nav {
     display: flex;
     gap: 20px;
-    background-color: rgba(0, 0, 0, 0.4);
+    background-color: black;
     padding: 10px 20px;
     border-radius: 8px;
+    box-shadow: 0 4px 12px gold;
 }
 
 nav a {
@@ -95,18 +106,22 @@ nav a {
     text-decoration: none;
     font-weight: bold;
     font-size: 18px;
+    transition: all 0.3s ease-in-out;
 }
 
 
 .card {
-    background-color: rgba(0, 0, 0, 0.3);
-    border: 1px solid rgba(255, 255, 255, 0.2);
+    background-color: black;
+    border: 1px solid grey;
     border-radius: 10px;
-    padding: 20px;
-    margin: 15px 0;
+    padding: 35px;
+    margin: 30px 0;
     max-width: 800px;
     width: 100%;
+    box-shadow: 0 6px 15px gold;
+    transition: transform 0.4s ease, box-shadow 0.4s ease, border-color 0.4s ease;
 }
+
 
 
 
@@ -125,11 +140,16 @@ nav a {
     gap: 10px;
 }
 img {
+    box-shadow: 0 4px 10px gold;
     transition: transform 0.4s ease, box-shadow 0.4s ease, border-radius 0.4s ease;
 }
 
 a {
     transition: color 0.3s ease, text-shadow 0.3s ease;
+    display: inline-block;
+}
+table {
+    box-shadow: 0 4px 10px gold;
 }
 
 
@@ -151,6 +171,8 @@ nav a:hover {
     padding: 5px 10px;
     border-radius: 5px;
     text-shadow: 0 0 8px aqua;
+    box-shadow: 0 2px 8px rgba(0, 255, 255, 0.4);
+    transform: scale(1.1);
 }
 
 
@@ -162,13 +184,52 @@ img:hover {
 
 
 a[href*="tiktok"]:hover {
-    color: #ff0050;
+    color: red;
     font-weight: bold;
-    text-shadow: 0 0 10px white;
+    text-shadow: 0 0 10px white, 0 0 20px #ff0050;
+    transform: scale(1.15);
 }
 
 
 tr.t1:hover, tr.t2:hover, tr.t3:hover, tr.t4:hover, tr.t5:hover {
     background-color: rgba(0, 255, 255, 0.2);
     cursor: pointer;
+    transform: translateX(5px);
+}
+h1:hover {
+    color: white;
+    transform: scale(1.05);
+
+}
+@media screen and (max-width: 768px) {
+    h1 {
+        font-size: 32px;
+    }
+
+    nav {
+        flex-direction: column;
+        align-items: center;
+        gap: 10px;
+        width: 100%;
+    }
+
+    .card {
+        padding: 15px;
+    }
+
+    img {
+        max-width: 100%;
+        height: auto;
+    }
+
+    .ke-2, .p2 {
+        text-align: left;
+    }
+
+    
+    table {
+        display: block;
+        overflow-x: auto;
+        white-space: nowrap;
+    }
 }
