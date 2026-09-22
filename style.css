@@ -101,3 +101,27 @@ nav a {
     max-width: 800px;
     width: 100%;
 }
+
+
+
+.container-grid {
+    display: grid; 
+    grid-template-columns: 1fr; 
+    gap: 20px; 
+    width: 100%;
+    max-width: 800px;
+}
+
+
+.card-media-grid {
+    display: grid;
+    justify-items: center;
+    gap: 10px;
+}
+
+
+.grid-list {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 10px;
+}
