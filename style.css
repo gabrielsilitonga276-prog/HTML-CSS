@@ -118,10 +118,51 @@ nav a {
     justify-items: center;
     gap: 10px;
 }
+img {
+    transition: transform 0.4s ease, box-shadow 0.4s ease, border-radius 0.4s ease;
+}
+
+a {
+    transition: color 0.3s ease, text-shadow 0.3s ease;
+}
 
 
 .grid-list {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
     gap: 10px;
+}
+.card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 20px rgba(0, 255, 255, 0.4);
+    border-color: aqua;
+}
+
+
+nav a:hover {
+    color: white;
+    background-color: rgba(0, 255, 255, 0.3);
+    padding: 5px 10px;
+    border-radius: 5px;
+    text-shadow: 0 0 8px aqua;
+}
+
+
+img:hover {
+    transform: scale(1.05);
+    border-radius: 12px;
+    box-shadow: 0 0 15px rgba(255, 255, 255, 0.8);
+}
+
+
+a[href*="tiktok"]:hover {
+    color: #ff0050;
+    font-weight: bold;
+    text-shadow: 0 0 10px white;
+}
+
+
+tr.t1:hover, tr.t2:hover, tr.t3:hover, tr.t4:hover, tr.t5:hover {
+    background-color: rgba(0, 255, 255, 0.2);
+    cursor: pointer;
 }
