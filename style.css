@@ -1,6 +1,6 @@
 /* --- KODE ASLI MILIKMU --- */
 body{
-    background: linear-gradient(135deg, blue, purple, aqua);
+    background: linear-gradient(135deg, blue, grey, aqua);
     /* Flexbox untuk merapikan seluruh isi halaman secara vertikal */
     display: flex;
     flex-direction: column;
@@ -19,6 +19,12 @@ h1{
     font-family: 'Times New Roman', Times, serif, Helvetica, sans-serif;
     color: white;
 }
+.picture-1{
+    text-align: center;
+}
+.picture-2{
+    text-align: center;
+}
 .ke-2{
     color: red;
     font-size: 30px;
@@ -33,7 +39,7 @@ h1{
     font-size: 25px;
 }
 .ke-5{
-    color: grey;
+    color: darkblue;
     font-size: 20px;
 }
 .p2{
