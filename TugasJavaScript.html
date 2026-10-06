@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Tugas JavaScript</title>
+    <link rel="stylesheet" href="style1.css">
+</head>
+<body>
+
+    <div class="header">
+        <img src="foto diri.jpg" alt="Foto">
+        <p><b>Nama :</b> Gabriel Hagabean Silitonga</p>
+        <p><b>NIM  :</b> 255314159</p>
+        <div class="clear"></div>
+    </div>
+
+    <h1>Tugas JavaScript</h1>
+
+
+    <div id="step1" class="section">
+        <label>Nama :</label><br>
+        <input type="text" id="txtNama"><br><br>
+
+        <label>Jumlah Pilihan :</label><br>
+        <input type="number" id="txtJml"><br><br>
+
+        <button onclick="prosesStep1()">OK</button>
+        <p id="errStep1" class="error"></p>
+    </div>
+
+    
+    <div id="step2" class="section" style="display:none;">
+        <div id="containerPilihan"></div>
+        <button onclick="prosesStep2()">OK</button>
+        <p id="errStep2" class="error"></p>
+    </div>
+
+    
+    <div id="step3" class="section" style="display:none;">
+        <label>Pilihan :</label><br>
+        <div id="containerRadio"></div><br>
+        <button onclick="prosesStep3()">OK</button>
+        <p id="errStep3" class="error"></p>
+    </div>
+
+    
+    <div id="step4" class="section" style="display:none;">
+        <label>Email :</label><br>
+        <input type="text" id="txtEmail"><br><br>
+        <button onclick="prosesStep4()">OK</button>
+        <p id="errStep4" class="error"></p>
+    </div>
+
+    
+    <div id="stepHasil" class="section" style="display:none;">
+        <h3>Hasil Output:</h3>
+        <p id="txtHasil"></p>
+    </div>
+
+    <script>
+        
+
+        let nama = "";
+        let jmlPilihan = 0;
+        let arrPilihan = [];
+        let pilihanTerpilih = "";
+        let email = "";
+
+        // ====== PROSES LANGKAH 1 ======
+        function prosesStep1() {
+            let inputNama = document.getElementById("txtNama").value;
+            let inputJml = Number(document.getElementById("txtJml").value);
+            let err = document.getElementById("errStep1");
+
+            // Error Trapping / Validasi Input
+            if (inputNama == "") {
+                err.innerText = "Nama tidak boleh kosong!";
+                return;
+            }
+            if (inputJml <= 0 || isNaN(inputJml)) {
+                err.innerText = "Jumlah pilihan harus berupa angka lebih dari 0!";
+                return;
+            }
+
+            err.innerText = "";
+            nama = inputNama;
+            jmlPilihan = inputJml;
+
+            // Kunci input Langkah 1
+            document.getElementById("txtNama").disabled = true;
+            document.getElementById("txtJml").disabled = true;
+
+            // Generate Inputan Teks Pilihan Menggunakan Perulangan FOR
+            let htmlContainer = "";
+            for (let i = 1; i <= jmlPilihan; i++) {
+                htmlContainer = htmlContainer + "<label>Pilihan " + i + " :</label><br>";
+                htmlContainer = htmlContainer + "<input type='text' id='pilih_" + i + "'><br><br>";
+            }
+
+            document.getElementById("containerPilihan").innerHTML = htmlContainer;
+            document.getElementById("step2").style.display = "block";
+        }
+
+        // ====== PROSES LANGKAH 2 ======
+        function prosesStep2() {
+            let err = document.getElementById("errStep2");
+            arrPilihan = []; // Reset Array
+
+            // Validasi seluruh Teks Pilihan dengan Loop FOR
+            for (let i = 1; i <= jmlPilihan; i++) {
+                let nilaiPilihan = document.getElementById("pilih_" + i).value;
+                if (nilaiPilihan == "") {
+                    err.innerText = "Semua Pilihan harus diisi!";
+                    return;
+                }
+                arrPilihan.push(nilaiPilihan);
+            }
+
+            err.innerText = "";
+
+            // Kunci semua input pilihan
+            for (let i = 1; i <= jmlPilihan; i++) {
+                document.getElementById("pilih_" + i).disabled = true;
+            }
+
+            // Generate Radio Button dengan Loop FOR
+            let htmlRadio = "";
+            for (let i = 0; i < arrPilihan.length; i++) {
+                htmlRadio = htmlRadio + "<input type='radio' name='rbPilihan' value='" + arrPilihan[i] + "'> " + arrPilihan[i] + "<br>";
+            }
+
+            document.getElementById("containerRadio").innerHTML = htmlRadio;
+            document.getElementById("step3").style.display = "block";
+        }
+
+        // ====== PROSES LANGKAH 3 ======
+        function prosesStep3() {
+            let err = document.getElementById("errStep3");
+            let elemenRadio = document.getElementsByName("rbPilihan");
+            let terpilih = false;
+
+            // Cek Radio Button mana yang dipilih menggunakan Loop WHILE
+            let index = 0;
+            while (index < elemenRadio.length) {
+                if (elemenRadio[index].checked) {
+                    pilihanTerpilih = elemenRadio[index].value;
+                    terpilih = true;
+                    break;
+                }
+                index++;
+            }
+
+            // Error Trapping jika tidak ada radio button yang dipilih
+            if (terpilih == false) {
+                err.innerText = "Silakan pilih salah satu opsi!";
+                return;
+            }
+
+            err.innerText = "";
+
+            // Kunci Radio Button
+            for (let i = 0; i < elemenRadio.length; i++) {
+                elemenRadio[i].disabled = true;
+            }
+
+            document.getElementById("step4").style.display = "block";
+        }
+
+        // ====== PROSES LANGKAH 4 ======
+        function prosesStep4() {
+            let inputEmail = document.getElementById("txtEmail").value;
+            let err = document.getElementById("errStep4");
+
+            // Error Controlling / Pattern Matching Email (Regex)
+            let emailPattern = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+
+            if (!emailPattern.test(inputEmail)) {
+                err.innerText = "Format email tidak valid! (Contoh: nama@domain.com)";
+                return;
+            }
+
+            err.innerText = "";
+            email = inputEmail;
+            document.getElementById("txtEmail").disabled = true;
+
+            // Menggabungkan Teks Pilihan (Pilihan 1, Pilihan 2, dst)
+            let teksDaftarPilihan = "";
+            for (let i = 0; i < arrPilihan.length; i++) {
+                if (i == 0) {
+                    teksDaftarPilihan = arrPilihan[i];
+                } else if (i == arrPilihan.length - 1) {
+                    teksDaftarPilihan = teksDaftarPilihan + ", dan " + arrPilihan[i];
+                } else {
+                    teksDaftarPilihan = teksDaftarPilihan + ", " + arrPilihan[i];
+                }
+            }
+
+            // Menampilkan Hasil Akhir Sesuai Format Tugas
+            let hasilAkhir = "Hallo, nama saya " + nama + ", email " + email + " saya mempunyai sejumlah " + jmlPilihan + " pilihan yaitu " + teksDaftarPilihan + ", dan saya memilih " + pilihanTerpilih;
+
+            document.getElementById("txtHasil").innerText = hasilAkhir;
+            document.getElementById("stepHasil").style.display = "block";
+        }
+    </script>
+
+</body>
+</html>
