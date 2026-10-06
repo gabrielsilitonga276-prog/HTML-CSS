@@ -98,7 +98,9 @@
             }
 
             document.getElementById("containerPilihan").innerHTML = htmlContainer;
+            document.getElementById("step1").style.display = "none";
             document.getElementById("step2").style.display = "block";
+
         }
 
     
@@ -130,6 +132,7 @@
             }
 
             document.getElementById("containerRadio").innerHTML = htmlRadio;
+            document.getElementById("step2").style.display = "none";
             document.getElementById("step3").style.display = "block";
         }
 
@@ -162,7 +165,7 @@
             for (let i = 0; i < elemenRadio.length; i++) {
                 elemenRadio[i].disabled = true;
             }
-
+            document.getElementById("step3").style.display = "none";
             document.getElementById("step4").style.display = "block";
         }
 
@@ -199,6 +202,7 @@
             let hasilAkhir = "Hallo, nama saya " + nama + ", email " + email + " saya mempunyai sejumlah " + jmlPilihan + " pilihan yaitu " + teksDaftarPilihan + ", dan saya memilih " + pilihanTerpilih;
 
             document.getElementById("txtHasil").innerText = hasilAkhir;
+            document.getElementById("step4").style.display = "none";
             document.getElementById("stepHasil").style.display = "block";
         }
     </script>
