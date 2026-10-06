@@ -66,13 +66,13 @@
         let pilihanTerpilih = "";
         let email = "";
 
-        // ====== PROSES LANGKAH 1 ======
+    
         function prosesStep1() {
             let inputNama = document.getElementById("txtNama").value;
             let inputJml = Number(document.getElementById("txtJml").value);
             let err = document.getElementById("errStep1");
 
-            // Error Trapping / Validasi Input
+        
             if (inputNama == "") {
                 err.innerText = "Nama tidak boleh kosong!";
                 return;
@@ -86,7 +86,7 @@
             nama = inputNama;
             jmlPilihan = inputJml;
 
-            // Kunci input Langkah 1
+        
             document.getElementById("txtNama").disabled = true;
             document.getElementById("txtJml").disabled = true;
 
@@ -101,12 +101,12 @@
             document.getElementById("step2").style.display = "block";
         }
 
-        // ====== PROSES LANGKAH 2 ======
+    
         function prosesStep2() {
             let err = document.getElementById("errStep2");
             arrPilihan = []; // Reset Array
 
-            // Validasi seluruh Teks Pilihan dengan Loop FOR
+        
             for (let i = 1; i <= jmlPilihan; i++) {
                 let nilaiPilihan = document.getElementById("pilih_" + i).value;
                 if (nilaiPilihan == "") {
@@ -118,12 +118,12 @@
 
             err.innerText = "";
 
-            // Kunci semua input pilihan
+        
             for (let i = 1; i <= jmlPilihan; i++) {
                 document.getElementById("pilih_" + i).disabled = true;
             }
 
-            // Generate Radio Button dengan Loop FOR
+        
             let htmlRadio = "";
             for (let i = 0; i < arrPilihan.length; i++) {
                 htmlRadio = htmlRadio + "<input type='radio' name='rbPilihan' value='" + arrPilihan[i] + "'> " + arrPilihan[i] + "<br>";
@@ -133,7 +133,7 @@
             document.getElementById("step3").style.display = "block";
         }
 
-        // ====== PROSES LANGKAH 3 ======
+    
         function prosesStep3() {
             let err = document.getElementById("errStep3");
             let elemenRadio = document.getElementsByName("rbPilihan");
@@ -150,7 +150,7 @@
                 index++;
             }
 
-            // Error Trapping jika tidak ada radio button yang dipilih
+            
             if (terpilih == false) {
                 err.innerText = "Silakan pilih salah satu opsi!";
                 return;
@@ -158,7 +158,7 @@
 
             err.innerText = "";
 
-            // Kunci Radio Button
+        
             for (let i = 0; i < elemenRadio.length; i++) {
                 elemenRadio[i].disabled = true;
             }
@@ -166,12 +166,12 @@
             document.getElementById("step4").style.display = "block";
         }
 
-        // ====== PROSES LANGKAH 4 ======
+    
         function prosesStep4() {
             let inputEmail = document.getElementById("txtEmail").value;
             let err = document.getElementById("errStep4");
 
-            // Error Controlling / Pattern Matching Email (Regex)
+        
             let emailPattern = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
 
             if (!emailPattern.test(inputEmail)) {
@@ -183,7 +183,7 @@
             email = inputEmail;
             document.getElementById("txtEmail").disabled = true;
 
-            // Menggabungkan Teks Pilihan (Pilihan 1, Pilihan 2, dst)
+            
             let teksDaftarPilihan = "";
             for (let i = 0; i < arrPilihan.length; i++) {
                 if (i == 0) {
@@ -195,7 +195,7 @@
                 }
             }
 
-            // Menampilkan Hasil Akhir Sesuai Format Tugas
+            
             let hasilAkhir = "Hallo, nama saya " + nama + ", email " + email + " saya mempunyai sejumlah " + jmlPilihan + " pilihan yaitu " + teksDaftarPilihan + ", dan saya memilih " + pilihanTerpilih;
 
             document.getElementById("txtHasil").innerText = hasilAkhir;
